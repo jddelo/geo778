@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+    <meta charset="utf-8">
+		<meta name="viewport" content="width=device-width", initial-scale=1>
+		<title>Blue Marsh Lake Geo777</title>
+    
+    <link rel="stylesheet" href="https://js.arcgis.com/4.23/esri/themes/light/main.css">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+		<link rel="stylesheet" href="css/style.css">
+    
+        <!--put your external stylesheet links here-->
+    <!-- JavaScript Bundle with Popper -->
+    <style>
+      .dropdown-menu{
+        max-height: 75vh;
+        overflow-y:scroll;
+        background-color: #0f3c4c;
+        
+      }
+      .dropdown-toggle::after {
+        display: none;
+      }
+
+      .esri-layer-list__item {
+        background-color: #0f3c4c;
+        
+      }
+      .esri-layer-list__item-toggle{
+        color: white;
+      }
+      .dropdown-menu{
+        color:white;
+      }
+      .dropdown-item{
+        color: white;
+        font-size: smaller;
+      }
+      .esri-editor__snapping-controls-popover{
+        display: none;
+      }
+
+
+      .esri-editor__message{
+        color: white;
+      }
+      .esri-widget__heading{
+        display:none;
+      }
+      .esri-popup__header-title{
+        border-radius: 2px;
+        font-size: 14px;
+        padding: 6px 7px;
+        margin: 6px auto 6px 7px;
+        display: block;
+        transition: background-color 125ms ease-in-out;
+        white-space: pre-wrap;
+        word-break: break-all;
+        word-wrap: break-word;
+        word-break: break-word;
+      }
+      .esri-editor__panel-content{
+        background-color: #0f3c4c;
+      }
+      .esri-editor__panel-toolbar__snapping-button{
+        display: none;
+      }
+      /* .esri-editor__update-features-action-buttons--button{
+        display: none; 
+      } */
+      .esri-legend__service{
+        background-color: #0f3c4c;
+      }
+      .esri-legend__layer-cell .esri-legend__layer-cell--info{
+        color: white;
+      }
+      .esri-item-list__filter-container--sticky{
+        display: none;
+      }
+      .esri-layer-list__item--invisible-at-scale .esri-layer-list__item-title {
+        color: gray;
+      }
+      .esri-basemap-gallery__item-title{
+        color: white;
+      }
+
+      .esri-layer-list__item-title {
+        font-size:smaller;
+      }
+      #editwin{
+        background-color: #0f3c4c;
+      }
+      .layerListText {
+        font: white;
+      }
+      .row {
+        height: 95vh;
+      }
+      .tbuttons {
+        font-size: smaller;
+        background-color: #0f3c4c;
+        white-space: nowrap;
+        /* min-width: 270px; */
+        max-height: 40px;
+
+      }
+      
+
+      #tools {
+        flex-grow: 1;
+        min-height: 10vh;
+        background-color: #071e26;
+
+
+      }
+      #header {
+        background-color: #071e26;
+        text-align: center;
+        height: 5vh;
+        color: white;
+        font-size: medium;
+        width: 100vw;
+      }
+      #main{
+        /* max-height: 100vh; */
+        /* height: 100vh; */
+        height: calc(var(--vh, 1vh)*100);
+
+      }
+      #trailsearch{
+        border-color: white;
+      }
+      .trailsearchlist{
+        border-color: white;
+      }
+      #viewDiv {
+        flex-grow: 1;
+        min-height: 80vh;
+        padding: 0px;
+
+      }
+      #layerlist {
+        padding: 3px;
+        background-color: #0f3c4c;
+      }
+      #bmapgall {
+        padding: 3px;
+        background-color: #0f3c4c;
+      }
+
+      @media (min-width: 576px){
+        #tools{
+          max-width: 240px;
+          text-align: center;
+        }
+        .tbuttons {
+          width: 210px;
+        }
+        #mobileonly{
+          display: hidden;
+        }
+      }
+
+      @media(max-width:575.98){
+
+      }
+
+      </style>
+
+<script type="text/javascript" src="js/main.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<script src="https://js.arcgis.com/4.23/"></script>
+
+
+
+        <script>
+          
+          window.addEventListener('resize', () => {
+            let vh = window.innerHeight * 0.01;
+            document.documentElement.style.setProperty('--vh', '${vh}px');
+            
+          });
+
+          window.onload = () => {
+            $('#info').modal('show');
+    }
+          require([
+            "esri/config",
+            "esri/Map",
+            "esri/views/MapView",
+            "esri/layers/FeatureLayer",
+            "esri/widgets/LayerList",
+            "esri/widgets/Compass",
+            "esri/Graphic",
+            "esri/widgets/ScaleBar",
+            "esri/widgets/BasemapGallery",
+            "esri/widgets/Editor",
+            "esri/widgets/support/SnappingControls",
+            "esri/widgets/Track",
+            "esri/widgets/Legend",
+            "esri/widgets/Attachments",
+            "esri/widgets/Popup",
+            "esri/popup/content/AttachmentsContent",
+            "esri/PopupTemplate", 
+            "esri/widgets/Bookmarks", 
+            "esri/WebMap",
+            "esri/views/layers/LayerView"
+          ], (esriConfig,
+              Map, 
+              MapView, 
+              FeatureLayer,
+              LayerList,
+              Compass,
+              Graphic,
+              ScaleBar,
+              BasemapGallery,
+              Editor,
+              SnappingControls,
+              Track,
+              Legend,
+              Attachments,
+              Popup,
+              AttachmentsContent,
+              PopupTemplate,
+              Bookmarks,
+              WebMap,
+              LayerView
+
+          )=> {
+            
+            esriConfig.apiKey = "AAPK57c9c0419b7e4175af24e0c0c5fb1bffwKKQXqN4x5_W8JB-j5Ld557Ud_BNAfTAvyoEcIx_tbOij8wIWYJYM6MxTGEELRv8";
+            // const map = new Map({
+            //   basemap: "arcgis-imagery" // Basemap layer
+            // });
+
+            let trailLayerView;
+
+            const map = new WebMap({
+              portalItem: {
+                id: "5ab2c87f9b7b4df9a2c38712484dd9bc"
+              }
+            });
+            
+            const view = new MapView({
+              map: map,
+              center: [-76.06143, 40.39518],
+              zoom: 12, // scale: 72223.819286
+              container: "viewDiv",
+              constraints: {
+                snapToZoom: false
+              }
+            });
+
+            const pavillion_template = {
+              title: "Pavillion",
+              content: "<b>{Name}</b> has {Amenities}"
+            };            
+            const comfort_template = {
+              title: "{Type}",
+              content: "{Type}<br>{Notes}"
+            };
+            // let attachmentsElement = new AttachmentsContent({
+            //   displayType: "list"
+            // });
+            const parking_template = {
+              title: "{Access_Name}",
+              content: [{
+                type: "text",
+                text: "{Access_Name}<br>{Lot_Type}<br>{Photos And Files}"
+              },
+              {
+                type: "attachments"
+              }
+            ]
+            };
+            const hazard_template={
+              title: "Hazard ID",
+              content: [{
+                type: "text",
+                text: "Severity of Issue: {Severity}<br>Description: {Description}<br>Date: {Date_Discovered}"
+              },
+              {
+                type: "attachments"
+              }      
+              ]
+            };
+            const boat_Template = {
+              title: "{Launch_nam}",
+              content: "<b>{Launch_nam}</b><br>{RampType}"
+            }
+            const trail_Template ={
+              fieldInfos: [{
+                fieldName: "Length_2D_",
+                format: {
+                  places: 0,
+                  digitSeparator: true
+                }
+              }],
+              title: "{Name}",
+              content:[{
+                type: "text",
+                text: "<b>{Name}</b><br>Length(ft): {Length_2D_}<br>Length(mi): {Length_2D1}<br>Hiking: {Hiking}<br>Biking: {Biking}<br>Equestrian: {Equestrian}"
+              },
+              {
+                type: "attachments"
+              }      
+              ]
+            }
+            const poi_Template ={
+              title: "Place of Interest - {Name}",
+              content: [{
+                type: "text",
+                text: "{Name}<br>{Description}"
+              },
+              {
+                type: "attachments"
+              }      
+              ]
+            };
+            
+
+            const pavilions = new FeatureLayer({
+              url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/Pavilions/FeatureServer",
+              popupEnabled: true,
+              popupTemplate: pavillion_template
+            })
+            const boatLaunches = new FeatureLayer({
+              url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/Boat_Launches/FeatureServer",
+              popupEnabled: true,
+              popupTemplate: boat_Template,
+              title: "Boat Launches"
+            })
+            const parkingAccess = new FeatureLayer({
+              //url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/Access_Areas/FeatureServer",
+              //url: "https://services8.arcgis.com/R2mmnJyOCua9OAMW/arcgis/rest/services/AccessAreas/FeatureServer",
+              url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/Access_Areas_JDD/FeatureServer",
+              popupEnabled: true,
+              popupTemplate: parking_template,
+              minScale: 30000,
+              title: "Access Areas"
+            })
+            const comfortStations = new FeatureLayer({
+              url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/Comfort_Stations_JD/FeatureServer",
+              popupEnabled: true,
+              popupTemplate: comfort_template,
+              minScale: 30000,
+              title: "Comfort Stations"
+            })
+            const bml_boundary = new FeatureLayer({
+              url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/BML_Boundary/FeatureServer/1",
+              title: "Park Boundary"
+            })
+            const hazard_ids = new FeatureLayer({
+              url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/Hazard_ID/FeatureServer",
+              popupEnabled: true,
+              popupTemplate: hazard_template,
+              minScale: 60000,
+              title: "Hazard ID"
+            })
+            const bml_trails = new FeatureLayer({
+              url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/BML_Trails/FeatureServer",
+              popupEnabled: true,
+              popupTemplate: trail_Template,
+              title: "Trails"
+
+            })
+            const bml_trail_mile_Markers = new FeatureLayer({
+              url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/BML_Trail_Mile_Markers/FeatureServer",
+              title: "Trail Mile Markers"
+            })
+
+            const places_of_interest = new FeatureLayer({
+              url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/Places_of_Interest/FeatureServer",
+              popupEnabled: true,
+              popupTemplate: poi_Template,
+              title: "Places of Interest"
+
+            })
+            
+
+            map.add(bml_boundary);
+            map.add(bml_trails);
+            map.add(bml_trail_mile_Markers);
+            map.add(boatLaunches);
+            map.add(pavilions);
+            map.add(parkingAccess);
+            map.add(comfortStations);
+            map.add(hazard_ids);
+            map.add(places_of_interest);
+
+            view.when(() => {
+              const layerList = new LayerList({
+                view: view,
+                container: layerlist
+              });
+              const compass = new Compass({
+                view:view,
+              })
+
+
+              let scaleBar = new ScaleBar({
+                view: view,
+                style: "ruler"
+              });
+              const bmapgallery = new BasemapGallery({
+                source: {
+                  query: {
+                    id: 'faf61a2a0080417f8c1b49d49eb11d35'
+                  }
+                },
+                view: view,
+                container: bmapgall
+              })
+              const editor = new Editor({
+                view:view,
+                container: editwin,
+                
+                headingLevel: 6,
+                allowAttachments: true,
+              });
+              let trackWidget = new Track({
+                view:view
+              });
+              const legend = new Legend({
+              view: view,
+              container: legendmenu,
+              headingLevel: 6
+            });
+
+
+            const bookmarks = new Bookmarks({
+              view:view,
+              container: bookmarkdrop
+
+            });
+
+            
+            view.ui.add(compass, "top-left");
+            view.ui.add(scaleBar, {
+              position: "bottom-left"
+            });
+            view.ui.add(trackWidget, "top-left");
+            view.popup.collapseEnabled = false;
+
+          
+
+            const trailNodes = document.querySelectorAll(`.trailopts`);
+            const trailElement = document.getElementById("trailsearch");
+        
+
+            trailElement.addEventListener("click", filterTrails);
+          
+
+            function filterTrails(event){
+              const selectTrail = event.target.getAttribute("data-trail");
+              if (selectTrail == 'Hiking'){
+                trailLayerView.filter = {
+                  where: "Hiking = 'Y'"
+                };
+              } else if (selectTrail =='Biking'){
+                trailLayerView.filter = {
+                  where: "Biking = 'Y'"
+                }
+              } else if (selectTrail =='Equestrian'){
+                trailLayerView.filter = {
+                  where: "Equestrian = 'Y'"
+                } 
+              } else {
+                trailLayerView.filter = null;
+              }
+            }
+
+            view.whenLayerView(bml_trails).then(function(layerView) {
+              trailLayerView = layerView;
+            });
+
+
+
+            });
+          
+          
+          
+          
+          
+          
+          });
+
+        
+        </script>
+    
+    
+    
+  </head>
+  
+	<body>
+    
+    
+    <div class = container-fluid id="main">
+      <div class="row align-items-center" id="header">
+        <div class="col-12">USACE Blue Marsh Lake Recreation Guide</div></div>
+      <div class="row">
+      <div class="col-sm-5 order-sm-first order-last text-center" id="tools">
+
+
+        
+        
+        <button class="btn btn-secondary dropdown-toggle shadow-none tbuttons" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <img class= "d-block d-sm-none" height= "20px" width ="20px" src="./img/pins-16_white.svg">
+          <span class="d-none d-sm-block"><img height= "20px" width ="20px" src="./img/pins-16_white.svg">&emsp;Places of Interest</span>
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end" id="bookmarkdrop" aria-labelledby="dropdownMenuButton1">
+        </ul>
+        <button class="btn btn-secondary dropdown-toggle shadow-none tbuttons" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <img class= "d-block d-sm-none" height= "20px" width ="20px" src="./img/search-16_white.svg">
+          <span class="d-none d-sm-block"><img height= "20px" width ="20px" src="./img/search-16_white.svg">&emsp;Trail Search</span>
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end" id="trailsearch" aria-labelledby="dropdownMenuButton1">
+          <li class="trailsearchlist"><a class="dropdown-item trailopts" data-trail="Hiking">Hiking</a></li>
+          <li class="trailsearchlist"><a class="dropdown-item trailopts" data-trail="Biking">Biking</a></li>
+          <li class="trailsearchlist"><a class="dropdown-item trailopts" data-trail="Equestrian">Horseback Riding</a></li>
+          <li class="trailsearchlist"><a class="dropdown-item trailopts" data-trail="All">All Trails</a></li>
+        </ul>
+
+        <button class="btn btn-secondary dropdown-toggle shadow-none tbuttons" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <img class= "d-block d-sm-none" height= "20px" width ="20px" src="./img/select-visible-24_white.svg">
+          <span class="d-none d-sm-block"><img height= "20px" width ="20px" src="./img/select-visible-24_white.svg">&emsp;Layers</span>
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end" id="layerlist" aria-labelledby="dropdownMenuButton1">
+        </ul>
+        
+
+
+        <button class="btn btn-secondary dropdown-toggle shadow-none tbuttons" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <img class= "d-block d-sm-none" height= "20px" width ="20px" src="./img/basemap-24_white.svg">
+          <span class="d-none d-sm-block"><img height= "20px" width ="20px" src="./img/basemap-24_white.svg">&emsp;Basemaps</span>
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end" id="bmapgall" aria-labelledby="dropdownMenuButton1">
+        </ul>
+
+        <button class="btn btn-secondary dropdown-toggle shadow-none tbuttons" type="button" data-bs-toggle="dropdown" data-bs-auto-close="false" aria-expanded="false">
+          <img class= "d-block d-sm-none" height= "20px" width ="20px" src="./img/edit-attributes-24_white.svg">
+          <span class="d-none d-sm-block"><img height= "20px" width ="20px" src="./img/edit-attributes-24_white.svg">&emsp;Create Hazard ID</span>
+        </button>
+        <ul class="dropdown-menu dropdown-menu-xs-end dropdown-menu-sm-start" id="editwin" aria-labelledby="dropdownMenuButton1">
+        </ul>
+
+        
+        <button class="btn btn-secondary dropdown-toggle shadow-none tbuttons" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <img class= "d-block d-sm-none" height= "20px" width ="20px" src="./img/legend-24_white.svg">
+          <span class="d-none d-sm-block"><img height= "20px" width ="20px" src="./img/legend-24_white.svg">&emsp;Legend</span>
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end" id="legendmenu" aria-labelledby="dropdownMenuButton1">
+        </ul>
+        
+        <button class="btn btn-secondary shadow-none tbuttons" type="button" data-bs-toggle="modal" data-bs-target="#info">
+          <img class= "d-block d-sm-none" height= "20px" width ="20px" src="./img/information-24_white.svg">
+          <span class="d-none d-sm-block"><img height= "20px" width ="20px" src="./img/information-24_white.svg">&emsp;Info</span>
+        </button>
+        
+        
+    </div>
+      <div class="col-sm-7"id="viewDiv">
+
+      </div>
+      </div>
+    </div>
+		</div>
+    
+    <div class ="modal fade" id="info" tabindex="-1" aria-labelledby="info_title" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class ="modal-header">
+            <h5 class="modal-title" id="info_title">Information</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+              <h3>Welcome to Blue Marsh Lake!</h3><br>
+              <p>This site was created to help users see and access the park's rereational areas and trails. <br>
+              <h4>Tools</h4> 
+              <h5><img height= "20px" width ="20px" src="./img/pins-16.svg">&emsp;Places of Interest</h5>
+                <p>The Places of Interest widget allows users to navigate through some of the lake's major places of interest.</p>
+              <h5><img height= "20px" width ="20px" src="./img/search-16.svg">&emsp;Trail Search</h5>
+                <p>The Trail Search widget allows users to filter the trails by activity, either Hiking, Biking, or Horseback Riding.</p>
+              <h5><img height= "20px" width ="20px" src="./img/select-visible-24.svg">&emsp;Layers</h5>
+                <p>The Layers widget allows users to toggle the map layers on/off. Map layers include: Places of Interest, 
+                  Hazard ID, Comfort Stations, Access Areas, Pavilions, Boat Launches, Trail Mile Markers, Trails, and Park Boundary.
+                  Layers that are grayed-out are not visible at that scale. Zooming in will turn on additional layers.</p>
+              <h5><img height= "20px" width ="20px" src="./img/basemap-24.svg">&emsp;Basemaps</h5>
+                  <p>The Basemaps widget allows the user to change the basemap background between aerial, topographic, or street map variations.</p>
+              <h5><img height= "20px" width ="20px" src="./img/edit-attributes-24.svg">&emsp;Create Hazard ID</h5>
+                  <p>The Create Hazard ID widget allows users to share information with the park and other users about potential hazards 
+                    that are encountered. Some examples could be trail repair, overflowing garbage, or broken facilities. To create an entry, select
+                    the severity level of hazard encountered, and click the location on the map to where it was encountered.  Fill out all information
+                    in the form when prompted. Contact information is not shared with the public. To add a photograph to the incident, go back into the editor widget and click 'select'.  Select your
+                    point on the map and you will then be able to add an attachment to the point. </p>
+              <h5><img height= "20px" width ="20px" src="./img/legend-24.svg">&emsp;Legend</h5>
+                  <p>The Legend widget shows users what the symbols on the map mean.  </p>
+              <h4>General Notes</h4>
+                <ul>
+                  <li>Click on a feature to find out more information about that feature</li>
+                  <li>Trails have elevation profiles attached as an image</li>
+                  <li>Some Parking/Access Areas have pictures as attachments</li>
+                  <li>The map view has both a compass and a tracker widget to indicate north and also show your location on the map</li>
+                </ul>
+              <h4>Additional Links</h4>
+                <ul>
+                  <li><a href="https://www.nap.usace.army.mil/missions/civil-works/blue-marsh-lake/">USACE Blue Marsh Lake Homepage</a></li>
+                  <li><a href="https://www.facebook.com/bluemarshlake/">Blue Marsh Lake Facebook Group</a></li>
+                </ul>
+              </p>
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class ="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    
+
+  </body>
+  </html>
