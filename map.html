@@ -352,9 +352,9 @@
               }
             };
 
-            relationshipRenderCreator.createRenderer(bivar_params)
+            relationshipRendererCreator.createRenderer(bivar_params)
               .then(function(response){
-                layer.renderer = response.renderer;
+                nhd_catchments.renderer = response.renderer;
               });
 
 
