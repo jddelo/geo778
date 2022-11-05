@@ -207,7 +207,8 @@
             "esri/PopupTemplate", 
             "esri/widgets/Bookmarks", 
             "esri/WebMap",
-            "esri/views/layers/LayerView"
+            "esri/views/layers/LayerView",
+            "esri/smartMapping/renderers/relationship"
           ], (esriConfig,
               Map, 
               MapView, 
@@ -227,7 +228,8 @@
               PopupTemplate,
               Bookmarks,
               WebMap,
-              LayerView
+              LayerView,
+              relationshipRendererCreator
 
           )=> {
             
@@ -320,6 +322,22 @@
               }      
               ]
             };
+
+            const bivar_params = {
+              layer: nhd_catchments,
+              view: view,
+              field1: {
+                field: "Total_N_lb_ac_"
+              },
+              field2: {
+                field: "Total_P_lb_ac_"
+              }
+            };
+
+            relationshipRenderCreator.createRenderer(bivar_params)
+              .then(function(response){
+                layer.renderer = response.renderer;
+              });
             
             const exposed_streams = new FeatureLayer({
               url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/Exposed_Streams/FeatureServer",
