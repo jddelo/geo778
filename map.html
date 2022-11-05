@@ -1,4 +1,4 @@
-<!-- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 	<head>
     <meta charset="utf-8">
@@ -321,6 +321,35 @@
               ]
             };
             
+            const exposed_streams = new FeatureLayer({
+              url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/Exposed_Streams/FeatureServer",
+              //popupEnabled: true,
+            })
+
+            const nhd_streams = new FeatureLayer({
+              url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/NHD_Streams/FeatureServer",
+              //popupEnabled: true,
+
+            })
+
+            const nhd_catchments = new FeatureLayer({
+              url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/NHD_Catchments_bivar/FeatureServer",
+              //popupEnabled: true,
+            })
+
+            const soil_units = new FeatureLayer({
+              url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/Soil_Unit_Boundary/FeatureServer",
+              //popupEnabled: true,          
+            })
+
+            const contours = new FeatureLayer({
+              url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/Contours_5ft/FeatureServer",
+              //popupEnabled: true,
+            })
+
+            
+
+
 
             const pavilions = new FeatureLayer({
               url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/Pavilions/FeatureServer",
@@ -623,4 +652,4 @@
     
 
   </body>
-  </html> -->
+  </html>
