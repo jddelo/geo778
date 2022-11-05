@@ -346,79 +346,14 @@
               url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/Contours_5ft/FeatureServer",
               //popupEnabled: true,
             })
-
             
 
+            map.add(exposed_streams);
+            map.add(nhd_streams);
+            map.add(nhd_catchments);
+            map.add(soil_units);
+            map.add(contours);
 
-
-            const pavilions = new FeatureLayer({
-              url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/Pavilions/FeatureServer",
-              popupEnabled: true,
-              popupTemplate: pavillion_template
-            })
-            const boatLaunches = new FeatureLayer({
-              url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/Boat_Launches/FeatureServer",
-              popupEnabled: true,
-              popupTemplate: boat_Template,
-              title: "Boat Launches"
-            })
-            const parkingAccess = new FeatureLayer({
-              //url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/Access_Areas/FeatureServer",
-              //url: "https://services8.arcgis.com/R2mmnJyOCua9OAMW/arcgis/rest/services/AccessAreas/FeatureServer",
-              url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/Access_Areas_JDD/FeatureServer",
-              popupEnabled: true,
-              popupTemplate: parking_template,
-              minScale: 30000,
-              title: "Access Areas"
-            })
-            const comfortStations = new FeatureLayer({
-              url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/Comfort_Stations_JD/FeatureServer",
-              popupEnabled: true,
-              popupTemplate: comfort_template,
-              minScale: 30000,
-              title: "Comfort Stations"
-            })
-            const bml_boundary = new FeatureLayer({
-              url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/BML_Boundary/FeatureServer/1",
-              title: "Park Boundary"
-            })
-            const hazard_ids = new FeatureLayer({
-              url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/Hazard_ID/FeatureServer",
-              popupEnabled: true,
-              popupTemplate: hazard_template,
-              minScale: 60000,
-              title: "Hazard ID"
-            })
-            const bml_trails = new FeatureLayer({
-              url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/BML_Trails/FeatureServer",
-              popupEnabled: true,
-              popupTemplate: trail_Template,
-              title: "Trails"
-
-            })
-            const bml_trail_mile_Markers = new FeatureLayer({
-              url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/BML_Trail_Mile_Markers/FeatureServer",
-              title: "Trail Mile Markers"
-            })
-
-            const places_of_interest = new FeatureLayer({
-              url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/Places_of_Interest/FeatureServer",
-              popupEnabled: true,
-              popupTemplate: poi_Template,
-              title: "Places of Interest"
-
-            })
-            
-
-            map.add(bml_boundary);
-            map.add(bml_trails);
-            map.add(bml_trail_mile_Markers);
-            map.add(boatLaunches);
-            map.add(pavilions);
-            map.add(parkingAccess);
-            map.add(comfortStations);
-            map.add(hazard_ids);
-            map.add(places_of_interest);
 
             view.when(() => {
               const layerList = new LayerList({
