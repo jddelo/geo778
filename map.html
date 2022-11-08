@@ -326,6 +326,7 @@
             const nhd_catchments = new FeatureLayer({
               url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/NHD_Catchments_bivar/FeatureServer",
               //popupEnabled: true,
+              title: "Nitrogen & Phosphorus Loading"
             })
 
             const bivar_params = {
@@ -333,7 +334,6 @@
               view: view,
               field1: {
                 field: "Total_N__lb_ac_",
-                label: "testing"
               },
               field2: {
                 field: "Total_P__lb_ac_"
@@ -344,25 +344,31 @@
               .then(function(response){
                 nhd_catchments.renderer = response.renderer;
               });
+
+          
         
 
             const soil_units = new FeatureLayer({
               url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/Soil_Unit_Boundary/FeatureServer",
-              //popupEnabled: true,          
+              //popupEnabled: true,     
+              title: "Soil Erodibility Factor (Kw)"     
             })
         
             const contours = new FeatureLayer({
               url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/Contours_5ft/FeatureServer",
               //popupEnabled: true,
+              title: "Contour (5' Interval)"
             })
 
             const exposed_streams = new FeatureLayer({
               url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/Exposed_Streams/FeatureServer",
               //popupEnabled: true,
+              title: "Exposed Streams"
             })
             const nhd_streams = new FeatureLayer({
               url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/NHD_Streams/FeatureServer",
               //popupEnabled: true,
+              title: "NHD Streams"
 
             })
 
@@ -371,11 +377,11 @@
 
             
 
-            map.add(exposed_streams);
-            map.add(nhd_streams);
             map.add(nhd_catchments);
             map.add(soil_units);
             map.add(contours);
+            map.add(exposed_streams);
+            map.add(nhd_streams);
 
 
             view.when(() => {
