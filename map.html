@@ -333,7 +333,7 @@
               });
               const compass = new Compass({
                 view:view,
-              })
+              });
 
 
               let scaleBar = new ScaleBar({
@@ -356,9 +356,7 @@
                 headingLevel: 6,
                 allowAttachments: true,
               });
-              let trackWidget = new Track({
-                view:view
-              });
+\
               const legend = new Legend({
               view: view,
               container: legendmenu,
@@ -377,40 +375,12 @@
             view.ui.add(scaleBar, {
               position: "bottom-left"
             });
-            view.ui.add(trackWidget, "top-left");
+           
             view.popup.collapseEnabled = false;
 
           
 
-            const trailNodes = document.querySelectorAll(`.trailopts`);
-            const trailElement = document.getElementById("trailsearch");
         
-
-            trailElement.addEventListener("click", filterTrails);
-          
-
-            function filterTrails(event){
-              const selectTrail = event.target.getAttribute("data-trail");
-              if (selectTrail == 'Hiking'){
-                trailLayerView.filter = {
-                  where: "Hiking = 'Y'"
-                };
-              } else if (selectTrail =='Biking'){
-                trailLayerView.filter = {
-                  where: "Biking = 'Y'"
-                }
-              } else if (selectTrail =='Equestrian'){
-                trailLayerView.filter = {
-                  where: "Equestrian = 'Y'"
-                } 
-              } else {
-                trailLayerView.filter = null;
-              }
-            }
-
-            view.whenLayerView(bml_trails).then(function(layerView) {
-              trailLayerView = layerView;
-            });
 
  
 
