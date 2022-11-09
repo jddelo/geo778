@@ -262,6 +262,11 @@
               content: "<b>Name:</b> {gnis_name}"
             };
 
+            const soils_template = {
+              title: "Soils",
+              content: "<b>Map Unit Symbol:</b> {MUSYM} <br> <b>Map Unit Name:</b> {muname} <br> <b>Component Name:</b> {compname} <br> <b>Average Slope:</b> {slope_r} <br> <b>Runoff Class:</b> {runoff} <br> <b>T Factor:</b> {tfact} <br> <b>Drainage Class:</b> {drainagecl} <br> <b>Geomorphic Description:</b> {geomdesc} <br> <b>Kw Factor:</b> {kwfact} <br> <b>Kf Factor:</b> {kffact}"
+            }
+
 
         
             const nhd_catchments = new FeatureLayer({
