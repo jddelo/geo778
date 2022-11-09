@@ -265,7 +265,7 @@
             const soils_template = {
               title: "Soils",
               content: "<b>Map Unit Symbol:</b> {MUSYM} <br> <b>Map Unit Name:</b> {muname} <br> <b>Component Name:</b> {compname} <br> <b>Average Slope:</b> {slope_r} <br> <b>Runoff Class:</b> {runoff} <br> <b>T Factor:</b> {tfact} <br> <b>Drainage Class:</b> {drainagecl} <br> <b>Geomorphic Description:</b> {geomdesc} <br> <b>Kw Factor:</b> {kwfact} <br> <b>Kf Factor:</b> {kffact}"
-            }
+            };
 
 
         
@@ -296,7 +296,8 @@
 
             const soil_units = new FeatureLayer({
               url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/Soil_Unit_Boundary/FeatureServer",
-              popupEnabled: true,     
+              popupEnabled: true,    
+              popupTemplate: soils_template, 
               title: "Soil Erodibility Factor (Kw)"     
             });
         
