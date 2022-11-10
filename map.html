@@ -278,7 +278,9 @@
               url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/NHD_Catchments_bivar/FeatureServer",
               popupEnabled: true,
               popupTemplate: catchment_template,
-              title: "Nitrogen & Phosphorus Loading"
+              title: "Nitrogen & Phosphorus Loading",
+              opacity: 50,
+              visible: false
             });
 
             const bivar_params = {
@@ -305,7 +307,9 @@
               url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/Soil_Unit_Boundary/FeatureServer",
               popupEnabled: true,    
               popupTemplate: soils_template, 
-              title: "Soil Erodibility Factor (Kw)"     
+              title: "Soil Erodibility Factor (Kw)",
+              opacity: 50,
+              visible: false
             });
             
             const lake_boundary = new FeatureLayer({
