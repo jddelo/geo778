@@ -267,11 +267,17 @@
               content: "<b>Map Unit Symbol:</b> {MUSYM} <br> <b>Map Unit Name:</b> {muname} <br> <b>Component Name:</b> {compname} <br> <b>Average Slope:</b> {slope_r} <br> <b>Runoff Class:</b> {runoff} <br> <b>T Factor:</b> {tfact} <br> <b>Drainage Class:</b> {drainagecl} <br> <b>Geomorphic Description:</b> {geomdesc} <br> <b>Kw Factor:</b> {kwfact} <br> <b>Kf Factor:</b> {kffact}"
             };
 
+            const catchment_template = {
+              title: "NHD Drainage Catchments",
+              content: "<b>ID:</b> {OBJECTID} </br> <b>Total Nitrogen (lb/acre):</b> {Total_N__lb_ac_} <br> <b>Total Phosphorus (lb/acre):</b> {Total_P__lb_ac_} <br> <b>Total Suspended Solids (ton/acre):</b> {Total_SS__ton_ac_}<br> <b>Area (Acres):</b> {Area__acre_}"
+            };
+
 
         
             const nhd_catchments = new FeatureLayer({
               url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/NHD_Catchments_bivar/FeatureServer",
-              //popupEnabled: true,
+              popupEnabled: true,
+              popupTemplate: catchment_template,
               title: "Nitrogen & Phosphorus Loading"
             });
 
