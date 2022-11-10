@@ -272,6 +272,11 @@
               content: "<b>ID:</b> {OBJECTID} </br> <b>Total Nitrogen (lb/acre):</b> {Total_N__lb_ac_} <br> <b>Total Phosphorus (lb/acre):</b> {Total_P__lb_ac_} <br> <b>Total Suspended Solids (ton/acre):</b> {Total_SS__ton_ac_}<br> <b>Area (Acres):</b> {Area__acre_}"
             };
 
+            const watershed_template = {
+              title: "HUC-12 Watershed",
+              content: "<b>Name:</b> {name} <br> <b>Acres:</b> {areaacres}"
+            }
+
 
         
             const nhd_catchments = new FeatureLayer({
@@ -312,6 +317,12 @@
               visible: false
             });
             
+            const watersheds = new FeatureLayer({
+              url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/Watersheds/FeatureServer",
+              popupTemplate: watershed_template,
+              title: "HUC-12 Watersheds"
+            })
+
             const lake_boundary = new FeatureLayer({
               url:"https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/Blue_Marsh_Lake/FeatureServer",
               title: "Blue Marsh Lake"
@@ -349,6 +360,7 @@
 
             map.add(nhd_catchments);
             map.add(soil_units);
+            map.add(watersheds);
             map.add(lake_boundary);
             map.add(bml_boundary);
             map.add(contours);
