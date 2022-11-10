@@ -306,6 +306,16 @@
               popupTemplate: soils_template, 
               title: "Soil Erodibility Factor (Kw)"     
             });
+            
+            const lake_boundary = new FeatureLayer({
+              url:"https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/Blue_Marsh_Lake/FeatureServer",
+              title: "Blue Marsh Lake"
+            })
+
+            const bml_boundary = new FeatureLayer({
+              url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/BML_Boundary/FeatureServer/1",
+              title: "Park Boundary"
+            });
         
             const contours = new FeatureLayer({
               url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/Contours_5ft/FeatureServer",
@@ -334,6 +344,8 @@
 
             map.add(nhd_catchments);
             map.add(soil_units);
+            map.add(lake_boundary);
+            map.add(bml_boundary);
             map.add(contours);
             map.add(exposed_streams);
             map.add(nhd_streams);
