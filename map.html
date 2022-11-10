@@ -320,7 +320,8 @@
             const watersheds = new FeatureLayer({
               url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/Watersheds/FeatureServer",
               popupTemplate: watershed_template,
-              title: "HUC-12 Watersheds"
+              title: "HUC-12 Watersheds",
+              label: "HUC-12 Watersheds"
             })
 
             const lake_boundary = new FeatureLayer({
