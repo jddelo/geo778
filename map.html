@@ -309,7 +309,8 @@
         
             const contours = new FeatureLayer({
               url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/Contours_5ft/FeatureServer",
-              //popupEnabled: true,
+              minScale: 0,
+              maxScale: 36000,
               title: "Contour (5' Interval)"
             });
 
