@@ -128,12 +128,7 @@
         height: calc(var(--vh, 1vh)*100);
 
       }
-      #trailsearch{
-        border-color: white;
-      }
-      .trailsearchlist{
-        border-color: white;
-      }
+
       #viewDiv {
         flex-grow: 1;
         min-height: 80vh;
@@ -392,13 +387,7 @@
                 view: view,
                 container: bmapgall
               })
-              const editor = new Editor({
-                view:view,
-                container: editwin,
-                
-                headingLevel: 6,
-                allowAttachments: true,
-              });
+
               const legend = new Legend({
               view: view,
               container: legendmenu,
@@ -406,11 +395,6 @@
             });
 
 
-            const bookmarks = new Bookmarks({
-              view:view,
-              container: bookmarkdrop
-
-            });
 
             
             view.ui.add(compass, "top-left");
@@ -529,7 +513,7 @@
               <p>This site was created as a resource to help identify locations within the contributing watershed of Blue Marsh Lake for improvements.  Runoff 
                  with excess nutrients entering the waterways have a negative impact on water quality and are also a factor in blue-green algae growth. Using this site
                  we can see areas with high nutrient loading rates, highly erodable soils, and exposed streams that are lacking a forested buffer.  With this information 
-                 you can identify locations that could benefit from Best Management Practice (BMP) installation to reduce runoff from these areas.<br>
+                 you can identify locations that could benefit from Best Management Practice (BMP) installation to reduce runoff from these areas.</p><br>
               <h4>Tools</h4> 
               <h5><img height= "20px" width ="20px" src="./img/open-book-24.svg">&emsp;About Blue-Green Algae</h5>
                 <p>About Blue-Green Algae links to our storymap site about formation, health impacts, and other associated informatiton on blue-green algae.</p>
@@ -540,7 +524,7 @@
               <h5><img height= "20px" width ="20px" src="./img/basemap-24.svg">&emsp;Basemaps</h5>
                   <p>The Basemaps widget allows the user to change the basemap background between aerial, topographic, or street map variations.</p>
               <h5><img height= "20px" width ="20px" src="./img/legend-24.svg">&emsp;Legend</h5>
-                  <p>The Legend widget shows users what the symbols on the map mean.  </p>
+                  <p>The Legend widget shows users what the symbols on the map mean.</p>
               <h4>General Notes</h4>
                 <ul>
                   <li>Click on a feature to find out more information about that feature</li>
