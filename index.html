@@ -128,26 +128,14 @@
         height: calc(var(--vh, 1vh)*100);
 
       }
-      #trailsearch{
-        border-color: white;
-      }
-      .trailsearchlist{
-        border-color: white;
-      }
+      
       #viewDiv {
         flex-grow: 1;
         min-height: 80vh;
         padding: 0px;
 
       }
-      #layerlist {
-        padding: 3px;
-        background-color: #0f3c4c;
-      }
-      #bmapgall {
-        padding: 3px;
-        background-color: #0f3c4c;
-      }
+
 
       @media (min-width: 576px){
         #tools{
@@ -173,6 +161,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 <script src="https://js.arcgis.com/4.23/"></script>
+<script src="https://unpkg.com/infinite-scroll@4/dist/infinite-scroll.pkgd.js"></script>
 
 
 
@@ -185,7 +174,7 @@
           });
 
           window.onload = () => {
-            $('#info').modal('show');
+            $('#navredir').modal('show');
     }
           require([
             "esri/config",
@@ -253,6 +242,9 @@
                 snapToZoom: false
               }
             });
+
+
+
 
             const pavillion_template = {
               title: "Pavillion",
@@ -569,16 +561,20 @@
     </div>
 		</div>
     
-    <div class ="modal fade" id="info" tabindex="-1" aria-labelledby="info_title" aria-hidden="true">
+    <div class ="modal fade" id="navredir" tabindex="-1" aria-labelledby="info_title" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class ="modal-header">
-            <h5 class="modal-title" id="info_title">Information</h5>
+            <h5 class="modal-title" id="info_title">Welcome!</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-              <h3>Welcome to Blue Marsh Lake!</h3><br>
-              <p>This site was created to help users see and access the park's rereational areas and trails. <br>
+              <h3>Welcome to Blue Marsh Lake's Targeted Watershed Improvement Program!</h3><br>
+              <p>This project was started to educate park visitors about blue-green algae and 
+                to provide park rangers a resource to identify locations for watershed improvements to help prevent blue-green algae growth. <br><br>
+                Take a tour of our informational site to learn about blue-green algae: how it forms, health impacts, and what Blue Marsh Lake is doing about it. <br> -or- <br>
+                Check out the interactive web map to see the contributing waters to Blue Marsh Lake and potentially problematic areas
+                 <br>
               <h4>Tools</h4> 
               <h5><img height= "20px" width ="20px" src="./img/pins-16.svg">&emsp;Places of Interest</h5>
                 <p>The Places of Interest widget allows users to navigate through some of the lake's major places of interest.</p>
@@ -606,15 +602,18 @@
                   <li>The map view has both a compass and a tracker widget to indicate north and also show your location on the map</li>
                 </ul>
               <h4>Additional Links</h4>
-                <ul>
-                  <li><a href="https://www.nap.usace.army.mil/missions/civil-works/blue-marsh-lake/">USACE Blue Marsh Lake Homepage</a></li>
-                  <li><a href="https://www.facebook.com/bluemarshlake/">Blue Marsh Lake Facebook Group</a></li>
-                </ul>
+              <ul>
+                <li><a href="https://www.nap.usace.army.mil/missions/civil-works/blue-marsh-lake/">USACE Blue Marsh Lake Homepage</a></li>
+                <li><a href="https://www.facebook.com/bluemarshlake/">Blue Marsh Lake Facebook Group</a></li>
+                <li><a href="https://www.nap.usace.army.mil/Missions/Civil-Works/Blue-Marsh-Lake/Harmful-Algal-Bloom-Information/">Blue Marsh Lake Harmful Algal Bloom Information</a></li>
+                <li><a href="https://www.epa.gov/nutrientpollution/harmful-algal-blooms">EPA Harmful Algal Blooms</a></li>
+              </ul>
               </p>
 
           </div>
           <div class="modal-footer">
-            <button type="button" class ="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class ="btn btn-secondary" data-bs-dismiss="modal">Blue-Green Algae Info</button>
+            <a class="btn btn-secondary" role="button" href= "map.html">Interactive Watershed Map</a>
           </div>
         </div>
       </div>
