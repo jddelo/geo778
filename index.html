@@ -13,7 +13,7 @@
         <!--put your external stylesheet links here-->
     <!-- JavaScript Bundle with Popper -->
     <style>
-      .dropdown-menu{
+      /* .dropdown-menu{
         max-height: 75vh;
         overflow-y:scroll;
         background-color: #0f3c4c;
@@ -65,11 +65,11 @@
       }
       .esri-editor__panel-toolbar__snapping-button{
         display: none;
-      }
+      } */
       /* .esri-editor__update-features-action-buttons--button{
         display: none; 
       } */
-      .esri-legend__service{
+      /* .esri-legend__service{
         background-color: #0f3c4c;
       }
       .esri-legend__layer-cell .esri-legend__layer-cell--info{
@@ -93,7 +93,7 @@
       }
       .layerListText {
         font: white;
-      }
+      } */
       .row {
         height: 95vh;
       }
@@ -161,7 +161,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 <script src="https://js.arcgis.com/4.23/"></script>
-<script src="https://unpkg.com/infinite-scroll@4/dist/infinite-scroll.pkgd.js"></script>
+<!--<script src="https://unpkg.com/infinite-scroll@4/dist/infinite-scroll.pkgd.js"></script>-->
 
 
 
@@ -196,55 +196,9 @@
 
         
         
-        <button class="btn btn-secondary dropdown-toggle shadow-none tbuttons" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-          <img class= "d-block d-sm-none" height= "20px" width ="20px" src="./img/pins-16_white.svg">
-          <span class="d-none d-sm-block"><img height= "20px" width ="20px" src="./img/pins-16_white.svg">&emsp;Places of Interest</span>
-        </button>
-        <ul class="dropdown-menu dropdown-menu-end" id="bookmarkdrop" aria-labelledby="dropdownMenuButton1">
-        </ul>
-        <button class="btn btn-secondary dropdown-toggle shadow-none tbuttons" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-          <img class= "d-block d-sm-none" height= "20px" width ="20px" src="./img/search-16_white.svg">
-          <span class="d-none d-sm-block"><img height= "20px" width ="20px" src="./img/search-16_white.svg">&emsp;Trail Search</span>
-        </button>
-        <ul class="dropdown-menu dropdown-menu-end" id="trailsearch" aria-labelledby="dropdownMenuButton1">
-          <li class="trailsearchlist"><a class="dropdown-item trailopts" data-trail="Hiking">Hiking</a></li>
-          <li class="trailsearchlist"><a class="dropdown-item trailopts" data-trail="Biking">Biking</a></li>
-          <li class="trailsearchlist"><a class="dropdown-item trailopts" data-trail="Equestrian">Horseback Riding</a></li>
-          <li class="trailsearchlist"><a class="dropdown-item trailopts" data-trail="All">All Trails</a></li>
-        </ul>
-
-        <button class="btn btn-secondary dropdown-toggle shadow-none tbuttons" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-          <img class= "d-block d-sm-none" height= "20px" width ="20px" src="./img/select-visible-24_white.svg">
-          <span class="d-none d-sm-block"><img height= "20px" width ="20px" src="./img/select-visible-24_white.svg">&emsp;Layers</span>
-        </button>
-        <ul class="dropdown-menu dropdown-menu-end" id="layerlist" aria-labelledby="dropdownMenuButton1">
-        </ul>
-        
-
-
-        <button class="btn btn-secondary dropdown-toggle shadow-none tbuttons" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-          <img class= "d-block d-sm-none" height= "20px" width ="20px" src="./img/basemap-24_white.svg">
-          <span class="d-none d-sm-block"><img height= "20px" width ="20px" src="./img/basemap-24_white.svg">&emsp;Basemaps</span>
-        </button>
-        <ul class="dropdown-menu dropdown-menu-end" id="bmapgall" aria-labelledby="dropdownMenuButton1">
-        </ul>
-
-        <button class="btn btn-secondary dropdown-toggle shadow-none tbuttons" type="button" data-bs-toggle="dropdown" data-bs-auto-close="false" aria-expanded="false">
-          <img class= "d-block d-sm-none" height= "20px" width ="20px" src="./img/edit-attributes-24_white.svg">
-          <span class="d-none d-sm-block"><img height= "20px" width ="20px" src="./img/edit-attributes-24_white.svg">&emsp;Create Hazard ID</span>
-        </button>
-        <ul class="dropdown-menu dropdown-menu-xs-end dropdown-menu-sm-start" id="editwin" aria-labelledby="dropdownMenuButton1">
-        </ul>
 
         
-        <button class="btn btn-secondary dropdown-toggle shadow-none tbuttons" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-          <img class= "d-block d-sm-none" height= "20px" width ="20px" src="./img/legend-24_white.svg">
-          <span class="d-none d-sm-block"><img height= "20px" width ="20px" src="./img/legend-24_white.svg">&emsp;Legend</span>
-        </button>
-        <ul class="dropdown-menu dropdown-menu-end" id="legendmenu" aria-labelledby="dropdownMenuButton1">
-        </ul>
-        
-        <button class="btn btn-secondary shadow-none tbuttons" type="button" data-bs-toggle="modal" data-bs-target="#info">
+        <button class="btn btn-secondary shadow-none tbuttons" type="button" data-bs-toggle="modal" data-bs-target="#navredir">
           <img class= "d-block d-sm-none" height= "20px" width ="20px" src="./img/information-24_white.svg">
           <span class="d-none d-sm-block"><img height= "20px" width ="20px" src="./img/information-24_white.svg">&emsp;Info</span>
         </button>
@@ -285,7 +239,8 @@
           </div>
           <div class="modal-footer">
             <button type="button" class ="btn btn-secondary" data-bs-dismiss="modal">Blue-Green Algae Info</button>
-            <a class="btn btn-secondary" role="button" href= "map.html">Interactive Watershed Map</a>
+            <button type="button" class ="btn btn-secondary" href= "map.html">Interactive Watershed Map</button>
+            <!--<a class="btn btn-secondary" role="button" href= "map.html">Interactive Watershed Map</a>-->
           </div>
         </div>
       </div>
@@ -294,4 +249,4 @@
     
 
   </body>
-  </html> -->
+  </html> 
