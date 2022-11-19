@@ -133,6 +133,10 @@
         flex-grow: 1;
         min-height: 80vh;
         padding: 0px;
+        background-image: url('./img/Background.jpg');
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
 
       }
 
@@ -176,7 +180,7 @@
           window.onload = () => {
             $('#navredir').modal('show');
     }
-         
+
         
         </script>
     
@@ -204,13 +208,16 @@
 
         
         <button class="btn btn-secondary shadow-none tbuttons" type="button" data-bs-toggle="modal" data-bs-target="#navredir">
-         <!--<img class= "d-block d-sm-none" height= "20px" width ="20px" src="./img/information-24_white.svg">-->
+         <img class= "d-block d-sm-none" height= "20px" width ="20px" src="./img/information-24_white.svg">
           <span class="d-none d-sm-block"><img height= "20px" width ="20px" src="./img/information-24_white.svg">&emsp;Info</span>
         </button>
         
         
         </div>
         <div class="col-sm-7"id="viewDiv">
+          <div class="col-6"></div>
+
+        </div>
 
         </div>
       </div>
