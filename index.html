@@ -129,7 +129,7 @@
       }
       
 
-      .tools {
+      #tools {
         flex-grow: 1;
         min-height: 10vh;
         background-color: #071e26;
@@ -148,7 +148,6 @@
         /* max-height: 100vh; */
         /* height: 100vh; */
         height: calc(var(--vh, 1vh)*100);
-        position:absolute;
 
       }
       
@@ -220,46 +219,25 @@
         <div class="col-12 d-block d-sm-none" style = "font-size: small">USACE Blue Marsh Lake Targeted Watershed Improvements</div></div>
         
         <div class="row">
-          <!-- <div class="col-sm-5 order-sm-first order-last text-center" id="tools" style="position:absolute"></div> -->
-          <div class="col-sm-5 order-sm-first d-none d-sm-block order-last text-center tools">
+          <div class="col-sm-5 order-sm-first order-last text-center" id="tools">
 
         <a class="btn btn-secondary shadow-none tbuttons" role="button" href= "map.html">
-          <!-- <img class= "d-block d-sm-none" height= "20px" width ="20px" src="./img/analysis-24_white.svg"> -->
+          <img class= "d-block d-sm-none" height= "20px" width ="20px" src="./img/analysis-24_white.svg">
           <span class="d-none d-sm-block"><img height= "20px" width ="20px" src="./img/analysis-24_white.svg">&emsp;Watershed Web Map</span>
         </a>
+        
+        
+
+        
         <button class="btn btn-secondary shadow-none tbuttons" type="button" data-bs-toggle="modal" data-bs-target="#navredir">
-         <!-- <img class= "d-block d-sm-none" height= "20px" width ="20px" src="./img/information-24_white.svg"> -->
+         <img class= "d-block d-sm-none" height= "20px" width ="20px" src="./img/information-24_white.svg">
           <span class="d-none d-sm-block"><img height= "20px" width ="20px" src="./img/information-24_white.svg">&emsp;Info</span>
-        </button>       
+        </button>
+        
         
         </div>
-        
-      <!--  <div class="col-sm-5 order-sm-first d-block d-sm-none order-last text-center tools"style="position:absolute">
-          <a class="btn btn-secondary shadow-none tbuttons" role="button" href= "map.html">
-            <img class= "d-block d-sm-none" height= "20px" width ="20px" src="./img/analysis-24_white.svg">
-           <span class="d-none d-sm-block"><img height= "20px" width ="20px" src="./img/analysis-24_white.svg">&emsp;Watershed Web Map</span> 
-          </a>
-          <button class="btn btn-secondary shadow-none tbuttons" type="button" data-bs-toggle="modal" data-bs-target="#navredir">
-           <img class= "d-block d-sm-none" height= "20px" width ="20px" src="./img/information-24_white.svg">
-             <span class="d-none d-sm-block"><img height= "20px" width ="20px" src="./img/information-24_white.svg">&emsp;Info</span>
-          </button>  
-        </div> -->
-
         <div class="col-sm-7" id="viewDiv" >
           <div class ="container-fluid" id="card_container" style = "overflow-y: scroll">
-           <br>
-           <br>
-           <br>
-           <br>
-           <br>
-           <br>
-           <br>
-           <br>
-           <br>
-           <br>
-           <br>
-           <br>
-           <br>
             <div class="row slide-div mt-5 mb-5">
               <div class="row" style="max-height: 10vh"><h6 class="slide-heading">Welcome to Blue Marsh's Watershed Improvemenet Program for Blue-Green Algae</h6>
               </div>
@@ -273,17 +251,6 @@
           </div>
         </div>
 
-        </div>
-      <div class ="row">
-        <div class="col-sm-5 order-sm-first d-block d-sm-none order-last text-center tools"style="position:absolute">
-          <a class="btn btn-secondary shadow-none tbuttons" role="button" href= "map.html">
-            <img class= "d-block d-sm-none" height= "20px" width ="20px" src="./img/analysis-24_white.svg">
-          <!--  <span class="d-none d-sm-block"><img height= "20px" width ="20px" src="./img/analysis-24_white.svg">&emsp;Watershed Web Map</span> -->
-          </a>
-          <button class="btn btn-secondary shadow-none tbuttons" type="button" data-bs-toggle="modal" data-bs-target="#navredir">
-           <img class= "d-block d-sm-none" height= "20px" width ="20px" src="./img/information-24_white.svg">
-            <!-- <span class="d-none d-sm-block"><img height= "20px" width ="20px" src="./img/information-24_white.svg">&emsp;Info</span> -->
-          </button>  
         </div>
       </div>
 
