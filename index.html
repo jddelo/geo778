@@ -15,6 +15,8 @@
     <style>
       #card_container{
         background-image: radial-gradient(#103a48, #3e7c6f);
+        overflow-y: auto;
+        height: 100vh;
         /*max-height: 50vh;
         width: 80%; */
       }
@@ -157,8 +159,10 @@
         padding: 0px;
         background-image: url('./img/Background.png');
         background-repeat: no-repeat;
+        background-position: fixed;
         /*background-attachment: fixed; */
         background-size: cover;
+        z-index: -1;
 
       }
 
@@ -215,45 +219,31 @@
     
     <div class = container-fluid id="main">
       <div class="row align-items-center" id="header">
-        <div class="col-12 d-none d-sm-block">USACE Blue Marsh Lake Targeted Watershed Improvements</div>
-        <div class="col-12 d-block d-sm-none" style = "font-size: small">USACE Blue Marsh Lake Targeted Watershed Improvements</div></div>
-        
-        <div class="row">
-          <div class="col-sm-5 order-sm-first order-last text-center" id="tools">
-
-        <a class="btn btn-secondary shadow-none tbuttons" role="button" href= "map.html">
-          <img class= "d-block d-sm-none" height= "20px" width ="20px" src="./img/analysis-24_white.svg">
-          <span class="d-none d-sm-block"><img height= "20px" width ="20px" src="./img/analysis-24_white.svg">&emsp;Watershed Web Map</span>
-        </a>
-        
-        
-
-        
-        <button class="btn btn-secondary shadow-none tbuttons" type="button" data-bs-toggle="modal" data-bs-target="#navredir">
-         <img class= "d-block d-sm-none" height= "20px" width ="20px" src="./img/information-24_white.svg">
-          <span class="d-none d-sm-block"><img height= "20px" width ="20px" src="./img/information-24_white.svg">&emsp;Info</span>
-        </button>
-        
-        
+        <div class="col-12 d-none d-sm-block">USACE Blue Marsh Lake Targeted Watershed Improvements
         </div>
-        <div class="col-sm-7" id="viewDiv" >
-          <div class ="container-fluid" id="card_container" style = "overflow-y: scroll">
-            <div class="row slide-div mt-5 mb-5">
-              <div class="row" style="max-height: 10vh"><h6 class="slide-heading">Welcome to Blue Marsh's Watershed Improvemenet Program for Blue-Green Algae</h6>
-              </div>
-              <div class="col-6">
-              <p class="slide-text">This is an informational site on blue-green algae, its' impacts on health and the lake, and what we are doing about it.</p>
-              </div>
-              <div class="col-6">
-              <img src="./img/algae_1.jpg" width="90%">
-              </div>
-            </div>
-          </div>
-        </div>
-
+        <div class="col-12 d-block d-sm-none" style = "font-size: small">USACE Blue Marsh Lake Targeted Watershed Improvements
         </div>
       </div>
-
+        
+      <div class="row">
+        <div class="col-sm-5 order-sm-first order-last text-center" id="tools"> 
+          <a class="btn btn-secondary shadow-none tbuttons" role="button" href= "map.html">
+          <img class= "d-block d-sm-none" height= "20px" width ="20px" src="./img/analysis-24_white.svg">
+          <span class="d-none d-sm-block"><img height= "20px" width ="20px" src="./img/analysis-24_white.svg">&emsp;Watershed Web Map</span>
+          </a>
+          <button class="btn btn-secondary shadow-none tbuttons" type="button" data-bs-toggle="modal" data-bs-target="#navredir">
+          <img class= "d-block d-sm-none" height= "20px" width ="20px" src="./img/information-24_white.svg">
+          <span class="d-none d-sm-block"><img height= "20px" width ="20px" src="./img/information-24_white.svg">&emsp;Info</span>
+          </button>
+        </div>
+        <div class="col-sm-7" id="viewDiv" >
+          <div class ="container-fluid" id="card_container">
+            <h6 class="slide-heading">Welcome to Blue Marsh's Watershed Improvemenet Program for Blue-Green Algae</h6>
+            <p class="slide-text">This is an informational site on blue-green algae, its' impacts on health and the lake, and what we are doing about it.</p>
+            <img src="./img/algae_1.jpg" width="90%">
+          </div>
+        </div>
+      </div>
     </div>
 		
     
