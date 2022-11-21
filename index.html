@@ -19,7 +19,9 @@
         width: 80%; */
       }
       .card_wrapper{
+        height: 100vh;
         overflow-y: auto;
+        perspective: 10px;
       }
      /* .slide-div{
         background-image: radial-gradient(#103a48, #3e7c6f);
@@ -29,7 +31,8 @@
         color: white;
         font-size: medium;
         text-align: center;
-        text-shadow: 0 0 5px black;
+        font-weight: bold;
+        text-shadow: 0 0 10px black;
       }
       .slide-text{
         font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
@@ -164,8 +167,9 @@
         background-position: fixed;
         /*background-attachment: fixed; */
         background-size: cover;
+        transform-style: preserve-3d;
         z-index: -1;
-
+        transform: translateZ(-10px) scale(2);
       }
 
 
