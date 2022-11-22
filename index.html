@@ -82,7 +82,7 @@
         /* flex-grow: 1; */
         /* min-height: 90vh; */
         padding: 0px;
-        min-height: 90vh;
+        /* min-height: 90vh; */
         /* overflow-y: auto;
         overflow-x: hidden; */
         perspective: 10px;
@@ -93,13 +93,13 @@
         background-size: cover;
         transform-style: preserve-3d;
         z-index: -1;
-        transform: translateZ(-10px);
+        transform: translateZ(-10px) scale(2);
       }
 
       .scrolling_container{
         height: 90vh;
-        overflow-y: auto;
-        overflow-x: hidden;
+        /* overflow-y: auto;
+        overflow-x: hidden; */
         
 
       }
@@ -159,7 +159,7 @@
         <div class="col-12 d-block d-sm-none" style = "font-size: small">USACE Blue Marsh Lake Targeted Watershed Improvements
         </div>
       </div>
-      <div class ="row scrolling_container">
+      <div class ="row overflow-auto scrolling_container">
         <div class="col-sm-12" id="bmmap"> 
         <div class="col-sm-6">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores iste modi porro illo. In, saepe. Sunt veniam nostrum excepturi ut, fugiat sit ex quisquam, amet exercitationem rerum unde laudantium consequatur?</div>
         <div class="col-sm-6">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores iste modi porro illo. In, saepe. Sunt veniam nostrum excepturi ut, fugiat sit ex quisquam, amet exercitationem rerum unde laudantium consequatur?</div>
