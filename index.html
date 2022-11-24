@@ -81,19 +81,9 @@
         height: calc(var(--vh, 1vh)*100);
 
       }
+      
       #bmmap {
-        background-repeat: no-repeat;
-        background-position: center;
-        /*background-attachment: fixed; */
-        object-fit: cover;
-        transform-style: preserve-3d;
-        z-index: -1;
-        transform: translateZ(-10px) scale(2);
-      }
-      #bmmapdiv {
         height: 100%;
-        width: 100%;
-        perspective: 10px;
         /* font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
         color: white;
         font-size: larger; */
@@ -107,14 +97,14 @@
         /* overflow-y: auto;
         overflow-x: hidden; */
         /* perspective: 10px; */
-        /* background-image: url('./img/Background.png');
+        background-image: url('./img/Background.png');
         background-repeat: no-repeat;
-        background-position: center; */
+        background-position: center;
         /*background-attachment: fixed; */
-        /* background-size: cover;
+        background-size: cover;
         transform-style: preserve-3d;
-        transform: translateZ(-10px) scale(2); */
         z-index: -1;
+        transform: translateZ(-10px) scale(2);
       }
 
       .scrolling_container{
@@ -181,9 +171,8 @@
         <div class="col-12 d-block d-sm-none" id = "headersmall" style = "font-size: small">USACE Blue Marsh Lake Targeted Watershed Improvements
         </div>
       </div>
-      <div class ="row align-items-center overflow-auto scrolling_container">
-        <div class="col-sm-12" id="bmmapdiv">
-          <img src="./img/Background.png" class="img-fluid" id="bmmap">
+      <div class ="row overflow-auto scrolling_container">
+        <div class="col-sm-12" id="bmmap">
           <div class="slide-heading"><br><br><br><br><br><br><br><br>Welcome to Blue Marsh's Watershed Improvemenet Program for Blue-Green Algae
           </div>
         </div>
@@ -194,7 +183,7 @@
           <p class="slide-text">Blue-green algae, despite its name, is actually not algae at all, it’s a type of photosynthetic bacteria called cyanobacteria.</p>
         </div>
         <div class="col-sm-6">
-          <img src = './img/bmalgae.JPG' class ='img-fluid'>
+          <img src = './img/bmalgae.JPG' class ='img-fluid' style="padding: 10px">
         </div>
         </div>
         </div>
