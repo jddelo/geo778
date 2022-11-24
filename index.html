@@ -82,18 +82,18 @@
 
       }
       #bmmap {
-        height: 100%;
-        width: 100%;
         background-repeat: no-repeat;
         background-position: center;
         /*background-attachment: fixed; */
-        background-size: cover;
+        object-fit: cover;
         transform-style: preserve-3d;
         z-index: -1;
         transform: translateZ(-10px) scale(2);
       }
       #bmmapdiv {
         height: 100%;
+        width: 100%;
+        perspective: 10px;
         /* font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
         color: white;
         font-size: larger; */
