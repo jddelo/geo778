@@ -37,7 +37,7 @@
         color: white;
         font-size: medium;
         text-align: center;
-        text-shadow: 2 -3 15px black;
+        text-shadow: 1px -1px 15px black;
       }
       /* .row {
         height: 95vh;
@@ -103,14 +103,15 @@
         /* background-size: cover; */
         transform-style: preserve-3d;
         z-index: -1;
+        overflow: hidden;
         /* transform: translateZ(-10px) scale(2); */
       }
 
       .background{
-        position: absolute;
+        position: fixed;
         height: 100%;
         width: 100%;
-        object-fit: cover;
+        object-fit: contain;
         z-index: -1;
         transform: translateZ(-10px) scale(2);
 
