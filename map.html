@@ -205,7 +205,8 @@
             "esri/widgets/Bookmarks", 
             "esri/WebMap",
             "esri/views/layers/LayerView",
-            "esri/smartMapping/renderers/relationship"
+            "esri/smartMapping/renderers/relationship",
+            "esri/widgets/Home"
           ], (esriConfig,
               Map, 
               MapView, 
@@ -226,7 +227,8 @@
               Bookmarks,
               WebMap,
               LayerView,
-              relationshipRendererCreator
+              relationshipRendererCreator,
+              Home
 
           )=> {
             
@@ -235,7 +237,7 @@
             //   basemap: "arcgis-imagery" // Basemap layer
             // });
 
-            let trailLayerView;
+
 
             const map = new WebMap({
               portalItem: {
@@ -396,6 +398,10 @@
               headingLevel: 6
             });
 
+              const home = new Home({
+                view: view
+              });
+
 
 
             
@@ -403,6 +409,7 @@
             view.ui.add(scaleBar, {
               position: "bottom-left"
             });
+            view.ui.add(home,"top-left");
            
             view.popup.collapseEnabled = false;
 
