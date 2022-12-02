@@ -125,9 +125,94 @@
             const watershed_template = {
               title: "HUC-12 Watershed",
               content: "<b>Name:</b> {name} <br> <b>Acres:</b> {areaacres}"
-            }
+            };
 
+            const bmp_template = {
+              title: "BMP Nutrient Reduction",
+              content: [{ 
+                type: "fields",
+                fieldInfos: [{
+                  fieldName: "Total_Acres",
+                  label: "Total Acres",
+                  format: {
+                    places: 2,
+                    digitSeparator: true
+                  }
+                }, {
+                  fieldName: "Discharge_TN_LB_AC_YR",
+                  label: "Total Nitrogen Discharge (lb/acre/yr)",
+                  format: {
+                    places: 2,
+                    digitSeparator: true
+                  }
+                }, {
+                  fieldName: "Discharge_TP_LB_AC_YR",
+                  label: "Total Phosphorus Discharge (lb/acre/yr)",
+                  format: {
+                    places: 2,
+                    digitSeparator: true
+                  }
+                }, {
+                  fieldName: "n_reduct_TreePlanting",
+                  label: "Nitrogen Reduction (lb/acre/yr) via Tree Plantings (100 trees)",
+                  format: {
+                    places: 2,
+                    digitSeparator: true
+                  }
+                }, {
+                  fieldName: "n_reduct_ForestBuff",
+                  label: "Nitrogen Reduction (lb/acre/yr) via Forested Buffer (35' wide)",
+                  format: {
+                    places: 2,
+                    digitSeparator: true
+                  }
+                }, {
+                  fieldName: "n_reduct_VegChannel",
+                  label: "Nitrogen Reduction (lb/acre/yr) via Vegetated Channel",
+                  format: {
+                    places: 2,
+                    digitSeparator: true
+                  }
+                }, {
+                  fieldName: "n_reduct_Filtering",
+                  label: "Nitrogen Reduction (lb/acre/yr) via Bioretention/Raingarden",
+                  format: {
+                    places: 2,
+                    digitSeparator: true
+                  }
+                }, {
+                  fieldName: "p_reduct_TreePlanting",
+                  label: "Phosphorus Reduction (lb/acre/yr) via Tree Plantings (100 trees)",
+                  format: {
+                    places: 2,
+                    digitSeparator: true
+                  }
+                }, {
+                  fieldName: "p_reduct_ForestBuff",
+                  label: "Phosphorus Reduction (lb/acre/yr) via Forested Buffer (35' wide)",
+                  format: {
+                    places: 2,
+                    digitSeparator: true
+                  }
+                }, {
+                  fieldName: "p_reduct_VegChannel",
+                  label: "Phosphorus Reduction (lb/acre/yr) via Vegetated Channel",
+                  format: {
+                    places: 2,
+                    digitSeparator: true
+                  }
+                }, {
+                  fieldName: "p_reduct_Filtering",
+                  label: "Phosphorus Reduction (lb/acre/yr) via Bioretention/Raingarden",
+                  format: {
+                    places: 2,
+                    digitSeparator: true
+                  }
+                }
 
+                ]
+              }]
+            };
         
             const nhd_catchments = new FeatureLayer({
               url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/NHD_Catchments_bivar/FeatureServer",
@@ -155,9 +240,6 @@
                 nhd_catchments.renderer = response.renderer;
               });
 
-          
-        
-
             const soil_units = new FeatureLayer({
               url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/Soil_Unit_Boundary/FeatureServer",
               popupEnabled: true,    
@@ -166,6 +248,16 @@
               opacity: .5,
               visible: false
             });
+
+            const bmp_nutrient_reduction = new FeatureLayer({
+              url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/BMP_Nutrient_Reduction/FeatureServer",
+              popupEnabled: true,
+              popupTemplate: bmp_template,
+              title: "BMP Nutrient Reduction",
+              visible: false,
+              minScale: 36000,
+              maxScale: 0
+            })
             
             const watersheds = new FeatureLayer({
               url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/Watersheds/FeatureServer",
@@ -212,6 +304,7 @@
 
             map.add(nhd_catchments);
             map.add(soil_units);
+            map.add(bmp_nutrient_reduction);
             map.add(watersheds);
             map.add(lake_boundary);
             map.add(bml_boundary);
@@ -343,8 +436,9 @@
               <h3>Welcome to Blue Marsh Lake's Targeted Watershed Improvement Program</h3><br>
               <p>This site was created as a resource to help identify locations within the contributing watershed of Blue Marsh Lake for improvements.  Runoff 
                  with excess nutrients entering the waterways have a negative impact on water quality and are also a factor in blue-green algae growth. Using this site
-                 we can see areas with high nutrient loading rates, highly erodable soils, and exposed streams that are lacking a forested buffer.  With this information 
-                 you can identify locations that could benefit from Best Management Practice (BMP) installation to reduce runoff from these areas.</p><br>
+                 we can see areas with high nutrient loading rates, highly erodable soils, exposed streams that are lacking a forested buffer, and estimated nutrient 
+                 reductions via a few Best Management Practice (BMP) options.  With this information you can identify locations that could benefit from BMP installation 
+                 to reduce runoff from these areas.</p><br>
               <h4>Tools</h4> 
               <h5><img height= "20px" width ="20px" src="./img/open-book-24.svg">&emsp;About Blue-Green Algae</h5>
                 <p>About Blue-Green Algae links to our storymap site about formation, health impacts, and other associated information on blue-green algae.</p>
@@ -356,13 +450,15 @@
                   <p>The Basemaps widget allows the user to change the basemap background between aerial, topographic, or street map variations.</p>
               <h5><img height= "20px" width ="20px" src="./img/legend-24.svg">&emsp;Legend</h5>
                   <p>The Legend widget shows users what the symbols on the map mean.</p>
-              <h5><img height= "20px" width ="20px" src="./img/information-24_white.svg">&emsp;Information</h5>
+              <h5><img height= "20px" width ="20px" src="./img/information-24.svg">&emsp;Information</h5>
                   <p>Information opens this window to show additional information about this program, on the tools, data notes, and additional helpful links.</p>
               <h4>Data Notes</h4>
                 <ul>
                   <li>Exposed Streams consist of a 100' buffer from the streams divided by drainage basins, where the landcover is either low vegetation or impervious surfaces.  Landcover was calculated using Esri's High-Resolution Deep Learning model paired with 2019 NAIP Imagery.  Drainage basins were delineated using the ArcGIS Hydrology toolset with 2018 PEMA Digital Elevation Models.</li>
                   <li>Soil Erodibility Factor (Kw) represents the susceptibility of soil to erosion and the rate of runoff.  Values provided are for the surface horizon of the soil.</li>
                   <li>Nitrogen & Phosphorus loading represent the amount of nitrogen and phosphorus eroded each year per drainage basin.  Data was aquired from the Model My Watershed tool from the Stroud Water Research Center's WikiWatershed initiative.</li>
+                  <li>BMP Nutrient Reduction is a layer of small drainage basins delineated from 2018 PEMA Digital Elevation Models. Some of these boundaries are not representative 
+                    of reality because of the high resolution DEM coupled with limited precision of the watershed delineation tools.  These boundaries were then combined with a high-resolution landcover class to calculate nitrogen and phosphorus loading rates per basin using PADEP guidance.  PADEP BMP effectiveness values were used to calculate the nutrient reductions for four separate BMP types.  Effectiveness of Bioretention/Raingarden and Vegetated Open Channels are dependent on soil classification and were averaged together for our purposes.</li>
                 </ul>
               <h4>Additional Links</h4>
                 <ul>
