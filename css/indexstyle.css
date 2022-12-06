@@ -1,6 +1,8 @@
 .card_container{
-    background-image: radial-gradient(#103a48, #3e7c6f);
+    /* background-image: radial-gradient(#103a48, #3e7c6f); */
+    background-image: radial-gradient(rgba(6,23,28,.3), rgba(24,49,44, 0.8));
     margin-bottom: 20vh;
+    /* opacity: .5; */
     /*max-height: 50vh;
     width: 80%; */
   }
